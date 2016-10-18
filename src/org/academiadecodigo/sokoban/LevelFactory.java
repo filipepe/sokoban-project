@@ -29,6 +29,7 @@ public class LevelFactory {
 
         fillArray(map, field.getCols(), field.getRows());
 
+
         return objectsToReturn;
 
     }

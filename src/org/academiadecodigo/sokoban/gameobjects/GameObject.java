@@ -1,5 +1,6 @@
 package org.academiadecodigo.sokoban.gameobjects;
 
+import org.academiadecodigo.sokoban.CollisionDetector;
 import org.academiadecodigo.sokoban.position.Position;
 
 /**

@@ -60,6 +60,10 @@ public class Position {
         col++;
     }
 
+    public boolean comparePosition(Position positionToCompare){
+            return row == positionToCompare.getRow() && col == positionToCompare.getCol();
+    }
+
     @Override
     public String toString() {
         return "Position{" +

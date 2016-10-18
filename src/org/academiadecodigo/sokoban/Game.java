@@ -13,6 +13,9 @@ public class Game {
 
     public void init(){
         objects = new GameObject[2];
+        collisionDetector = new CollisionDetector(objects);
+
+
         //collisionDetector = new CollisionDetector(objects.length);
 
     }
