@@ -12,6 +12,7 @@ public class Box extends MovableObject {
 
     @Override
     public boolean isMovable(Direction direction){
+        throw new UnsupportedOperationException();
 
     }
 

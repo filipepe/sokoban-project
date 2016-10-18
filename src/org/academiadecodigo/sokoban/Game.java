@@ -12,8 +12,8 @@ public class Game {
 
 
     public void init(){
-        objects = new GameObject[];
-        collisionDetector = new CollisionDetector(objects.length);
+        objects = new GameObject[2];
+        //collisionDetector = new CollisionDetector(objects.length);
 
     }
 
@@ -22,7 +22,8 @@ public class Game {
     }
 
 
-    private boolean comparePositon(){
+    private boolean checkPosition(){
+        throw new UnsupportedOperationException();
 
     }
 
