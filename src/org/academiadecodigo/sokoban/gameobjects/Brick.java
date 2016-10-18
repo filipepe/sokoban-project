@@ -7,4 +7,9 @@ public class Brick extends GameObject {
     public Brick(int col, int row, boolean crossable) {
         super(col, row, crossable);
     }
+
+    @Override
+    public String toString() {
+        return "Brick";
+    }
 }

@@ -19,4 +19,8 @@ public abstract class GameObject {
     public boolean isCrossable(){
         return crossable;
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }

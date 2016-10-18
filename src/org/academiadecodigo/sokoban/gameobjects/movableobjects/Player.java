@@ -10,6 +10,8 @@ public class Player extends MovableObject {
 
     public Player(int col, int row, boolean crossable) {
         super(col, row, crossable);
+        direction = Direction.DOWN;
+
     }
 
     private void pushBox(Direction direction){
@@ -25,5 +27,12 @@ throw new UnsupportedOperationException();
     @Override
     public void move(Direction direction){
 
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "direction=" + direction +
+                '}';
     }
 }

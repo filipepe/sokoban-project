@@ -20,4 +20,9 @@ public class Box extends MovableObject {
     public void move(Direction direction){
 
     }
+
+    @Override
+    public String toString() {
+        return "Box";
+    }
 }
