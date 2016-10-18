@@ -35,5 +35,7 @@ public class TesteFactory {
         System.out.println(objectos[0].getPosition());
 
 
+
+
     }
 }

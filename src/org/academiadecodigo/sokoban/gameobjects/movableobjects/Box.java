@@ -18,7 +18,7 @@ public class Box extends MovableObject {
 
     @Override
     public void move(Direction direction){
-
+        this.getPosition().moveInDirection(direction);
     }
 
     @Override

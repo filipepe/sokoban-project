@@ -29,17 +29,9 @@ public class CollisionDetector {
                 if (!gameObjects[i].getPosition().comparePosition(tempPosition)) {
                     continue;
                 }
-//                if (gameObjects[i] instanceof Brick) {
-//                    return gameObjects[i];
-//                }
-//                if (gameObjects[i] instanceof Box){
-//                    return gameObjects[i];
-//                }
-
                 if (!(gameObjects[i] instanceof SpotX)) {
                     return gameObjects[i];
                 }
-
             }
             return null;
         } else {
@@ -66,7 +58,7 @@ public class CollisionDetector {
             case RIGHT:
                 return new Position(gameObject.getPosition().getCol() + 1, gameObject.getPosition().getRow());
             default:
-                System.out.println("something very bad happen!");
+                System.out.println("something very bad happened!");
                 return null;
         }
     }

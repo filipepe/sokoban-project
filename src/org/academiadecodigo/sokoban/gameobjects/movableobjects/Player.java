@@ -1,5 +1,6 @@
 package org.academiadecodigo.sokoban.gameobjects.movableobjects;
 
+import org.academiadecodigo.sokoban.CollisionDetector;
 import org.academiadecodigo.sokoban.position.Direction;
 
 /**
@@ -7,6 +8,7 @@ import org.academiadecodigo.sokoban.position.Direction;
  */
 public class Player extends MovableObject {
     private Direction direction;
+    //private CollisionDetector detector;
 
     public Player(int col, int row, boolean crossable) {
         super(col, row, crossable);
@@ -21,11 +23,13 @@ public class Player extends MovableObject {
     @Override
     public boolean isMovable(Direction direction){
 
-throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException();
+
     }
 
     @Override
     public void move(Direction direction){
+        this.getPosition().moveInDirection(direction);
 
     }
 
