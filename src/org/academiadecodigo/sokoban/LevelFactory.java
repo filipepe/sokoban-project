@@ -35,6 +35,28 @@ public class LevelFactory {
 
     }
 
+    public GameObject[] level1(Field field){
+        objectsToReturn = new GameObject[52];
+        objectsToReturn[0] = new Player(6,2,false);
+        pos = 1;
+
+        String[][] map = {
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", "", "","","", "b", "b"},
+                {"b", "b", "b", "","b","b", "", "b", "b"},
+                {"b", "b", "b", "", "b","","c", "", "b"},
+                {"b", "", "x", "x", "b","","c", "", "b"},
+                {"b", "", "", "","","", "", "", "b"},
+                {"b", "", "", "b","b","b", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", "b","b","b", "b"}};
+
+        fillArray(map, field.getCols(), field.getRows());
+
+
+        return objectsToReturn;
+
+    }
+
     private void fillArray(String[][] map, int cols, int rows){
         System.out.println(objectsToReturn.length);
         for(int row = 0; row < rows; row++){

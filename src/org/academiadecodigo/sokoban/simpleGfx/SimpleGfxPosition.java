@@ -37,9 +37,7 @@ public class SimpleGfxPosition {
 
         for (int i = 0; i < picture.length; i++) {
             picture[i].draw();
-
         }
-
     }
 
     public void moveInDirection(int posArray, Direction direction) {
@@ -56,20 +54,5 @@ public class SimpleGfxPosition {
             case RIGHT:
                 picture[posArray].translate(100,0);
         }
-
     }
 }
-
-
-
-    /*private void init() {
-        simpleGfxGrid = (SimpleGfxGrid) getGrid();
-        rectangle = new Rectangle(SimpleGfxGrid.columnToX(getCol()) + SimpleGfxGrid.PADDING,
-                SimpleGfxGrid.rowToY(getRow()) + SimpleGfxGrid.PADDING,
-                SimpleGfxGrid.SIZE, SimpleGfxGrid.SIZE);
-
-        show();
-
-    }*/
-
-
