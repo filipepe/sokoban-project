@@ -25,11 +25,12 @@ public class Game {
 
     }
 
-    public void startGame(){
+    public void startGame() throws InterruptedException {
 
         for(int i = 0; i < objects.length; i++ ){
             System.out.println(objects[i]);
         }
+        /*
         System.out.println(objects[0].getPosition());
         movePlayer(Direction.UP);
         System.out.println(objects[0].getPosition());
@@ -42,6 +43,12 @@ public class Game {
         }
         movePlayer(Direction.DOWN);
         System.out.println(objects[0].getPosition());
+
+*/
+        Thread.sleep(5000);
+        for(int i = 0; i < objects.length; i++ ){
+            System.out.println(objects[i]);
+        }
 
 
     }
@@ -58,8 +65,7 @@ public class Game {
 
     }
 
-    // TODO: 19/10/16 alterar os argumentos que recebe pois o player e sempre na pos 0
-    private void movePlayer(Direction direction){
+    public void movePlayer(Direction direction){
         GameObject o;
         o = isMovable(direction, objects[0]);
         if(o == null){

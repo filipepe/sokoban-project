@@ -37,6 +37,7 @@ public class Player extends MovableObject {
     public String toString() {
         return "Player{" +
                 "direction=" + direction +
+                "Pos: " + getPosition() +
                 '}';
     }
 }
