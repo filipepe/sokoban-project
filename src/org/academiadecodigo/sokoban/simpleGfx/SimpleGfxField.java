@@ -1,5 +1,6 @@
 package org.academiadecodigo.sokoban.simpleGfx;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.sokoban.gameobjects.GameObject;
 
@@ -13,7 +14,7 @@ public class SimpleGfxField {
     private int rows;
     public static final int PADDING = 10;
     public static final int SIZE = 100;
-
+    public static final Color GROUND = new Color(0, 255, 197);
 
     public SimpleGfxField(int cols, int rows) {
         this.cols = cols;
@@ -24,6 +25,7 @@ public class SimpleGfxField {
 
     private void init() {
         rectangle = new Rectangle(PADDING, PADDING, 900, 800);
+        rectangle.setColor(GROUND);
 
         show();
 

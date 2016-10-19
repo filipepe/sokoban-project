@@ -14,7 +14,7 @@ public class LevelFactory {
     private int pos;
 
     public GameObject[] createLevel(Field field){
-        objectsToReturn = new GameObject[31];
+        objectsToReturn = new GameObject[33];
         objectsToReturn[0] = new Player(1,1,false);
         pos = 1;
 
@@ -22,9 +22,9 @@ public class LevelFactory {
                 {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
                 {"b", "", "", "", "","","", "", "b"},
                 {"b", "", "", "","","", "", "", "b"},
+                {"b", "", "", "", "c","","", "", "b"},
                 {"b", "", "", "", "","","", "", "b"},
-                {"b", "", "", "", "","","", "", "b"},
-                {"b", "", "", "","","", "", "", "b"},
+                {"b", "", "", "","","", "x", "", "b"},
                 {"b", "", "", "","","", "", "", "b"},
                 {"b", "b", "b", "b", "b", "b","b","b", "b"}};
 
