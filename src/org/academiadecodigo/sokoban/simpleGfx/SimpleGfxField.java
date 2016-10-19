@@ -3,12 +3,14 @@ package org.academiadecodigo.sokoban.simpleGfx;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.sokoban.gameobjects.GameObject;
+import org.academiadecodigo.sokoban.position.Direction;
 
 /**
  * Created by codecadet on 19/10/16.
  */
 public class SimpleGfxField {
     private Rectangle rectangle;
+    private SimpleGfxPosition positions;
     //private SimpleGfxField simpleGfxField;
     private int cols;
     private int rows;
@@ -32,8 +34,13 @@ public class SimpleGfxField {
     }
 
     public void createPos(GameObject[] gameObject){
-        new SimpleGfxPosition(gameObject);
+        positions = new SimpleGfxPosition(gameObject);
     }
+
+    public void moveInDirection(int posArray, Direction direction){
+        positions.moveInDirection(posArray, direction);
+    }
+
 
     /**
      * @see GridPosition#show()

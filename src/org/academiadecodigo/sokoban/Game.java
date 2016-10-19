@@ -14,6 +14,7 @@ public class Game {
     private Field field;
     private GameObject[] objects;
     private CollisionDetector collisionDetector;
+    private SimpleGfxField urso;
 
 
     public void init(){
@@ -21,8 +22,10 @@ public class Game {
         field = new Field(9,8);
         objects = fabrica.createLevel(field);
         collisionDetector = new CollisionDetector(objects);
-        SimpleGfxField urso  = new SimpleGfxField(10,10);
+        urso  = new SimpleGfxField(10,10);
         urso.createPos(objects);
+
+
 
        //startGame();
 
@@ -33,6 +36,8 @@ public class Game {
         for(int i = 0; i < objects.length; i++ ){
             System.out.println(objects[i]);
         }
+
+
         /*
         System.out.println(objects[0].getPosition());
         movePlayer(Direction.UP);
@@ -73,12 +78,14 @@ public class Game {
         o = isMovable(direction, objects[0]);
         if(o == null){
             objects[0].getPosition().moveInDirection(direction);
+            urso.moveInDirection(0,direction);
         }
         else if(o instanceof Box){
             GameObject o2;
             o2 = isMovable(direction,o);
             if(o2 == null){
                 objects[0].getPosition().moveInDirection(direction);
+                urso.moveInDirection(0,direction);
                 o.getPosition().moveInDirection(direction);
             }
         }
