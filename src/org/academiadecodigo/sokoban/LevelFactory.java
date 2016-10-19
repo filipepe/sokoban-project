@@ -14,18 +14,19 @@ public class LevelFactory {
     private int pos;
 
     public GameObject[] createLevel(Field field){
-        objectsToReturn = new GameObject[29];
+        objectsToReturn = new GameObject[31];
         objectsToReturn[0] = new Player(1,1,false);
         pos = 1;
 
         String[][] map = {
-                {"b", "b", "b", "b", "b", "b", "b"},
-                {"b", "", "", "b", "", "", "b"},
-                {"b", "", "c", "", "", "", "b"},
-                {"b", "", "", "", "", "", "b"},
-                {"b", "", "c", "", "", "", "b"},
-                {"b", "", "", "", "", "x", "b"},
-                {"b", "b", "b", "b", "b", "b", "b"}};
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", "", "", "", "","","", "", "b"},
+                {"b", "", "", "","","", "", "", "b"},
+                {"b", "", "", "", "","","", "", "b"},
+                {"b", "", "", "", "","","", "", "b"},
+                {"b", "", "", "","","", "", "", "b"},
+                {"b", "", "", "","","", "", "", "b"},
+                {"b", "b", "b", "b", "b", "b","b","b", "b"}};
 
         fillArray(map, field.getCols(), field.getRows());
 
@@ -35,6 +36,7 @@ public class LevelFactory {
     }
 
     private void fillArray(String[][] map, int cols, int rows){
+        System.out.println(objectsToReturn.length);
         for(int row = 0; row < rows; row++){
             for(int col = 0; col < cols; col++){
                 if(map[row][col].equals("b") ){
