@@ -14,16 +14,16 @@ public class LevelFactory {
     private int pos;
 
     public GameObject[] createLevel(Field field){
-        objectsToReturn = new GameObject[28];
+        objectsToReturn = new GameObject[29];
         objectsToReturn[0] = new Player(1,1,false);
         pos = 1;
 
         String[][] map = {
                 {"b", "b", "b", "b", "b", "b", "b"},
+                {"b", "", "", "b", "", "", "b"},
+                {"b", "", "c", "", "", "", "b"},
                 {"b", "", "", "", "", "", "b"},
-                {"b", "", "", "", "", "", "b"},
-                {"b", "", "", "c", "", "", "b"},
-                {"b", "", "", "c", "", "", "b"},
+                {"b", "", "c", "", "", "", "b"},
                 {"b", "", "", "", "", "x", "b"},
                 {"b", "b", "b", "b", "b", "b", "b"}};
 

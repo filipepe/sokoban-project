@@ -23,6 +23,7 @@ public class Box extends MovableObject {
 
     @Override
     public String toString() {
-        return "Box";
+        return "Box " +
+                getPosition();
     }
 }

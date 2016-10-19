@@ -17,6 +17,7 @@ public class TesteFactory {
             System.out.println(objectos[i]);
         }
 
+
         //test positions
         System.out.println(objectos[0].getPosition());
        objectos[0].getPosition().moveInDirection(Direction.DOWN);
