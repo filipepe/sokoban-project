@@ -18,7 +18,7 @@ public class CollisionDetector {
         this.gameObjects = gameObjects;
     }
 
-    public GameObject checkCollision(Direction direction, GameObject object) {
+    public int checkCollision(Direction direction, GameObject object) {
 
         Position tempPosition = adjacentPosition(direction, object);
 
@@ -30,18 +30,18 @@ public class CollisionDetector {
                     continue;
                 }
                 if (!(gameObjects[i] instanceof SpotX)) {
-                    return gameObjects[i];
+                    return i;
                 }
             }
-            return null;
+            return -1;
         } else {
             for (int i = 1; i < gameObjects.length; i++) {
                 if (gameObjects[i] == object || !gameObjects[i].getPosition().comparePosition(tempPosition)) {
                     continue;
                 }
-                return gameObjects[i];
+                return i;
             }
-            return null;
+            return -1;
         }
 
     }

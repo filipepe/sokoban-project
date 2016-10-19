@@ -62,31 +62,36 @@ public class Game {
     }
 
 
-    private GameObject isMovable(Direction direction, GameObject gameObject){
+    private int isMovable(Direction direction, GameObject gameObject){
 
-        GameObject object = collisionDetector.checkCollision(direction,gameObject);
+        int position = collisionDetector.checkCollision(direction,gameObject);
 
-        if(object instanceof Box  || object instanceof Brick) {
-           return object;
+        if(position == -1){
+            return -1;
         }
-        return null;
+
+        if(objects[position] instanceof Box  || objects[position] instanceof Brick) {
+           return position;
+        }
+        return -1;
 
     }
 
     public void movePlayer(Direction direction){
-        GameObject o;
-        o = isMovable(direction, objects[0]);
-        if(o == null){
+        int pos;
+        pos = isMovable(direction, objects[0]);
+        if(pos == -1){
             objects[0].getPosition().moveInDirection(direction);
             urso.moveInDirection(0,direction);
         }
-        else if(o instanceof Box){
-            GameObject o2;
-            o2 = isMovable(direction,o);
-            if(o2 == null){
+        else if(objects[pos] instanceof Box){
+            int pos2;
+            pos2 = isMovable(direction,objects[pos]);
+            if(pos2 == -1){
                 objects[0].getPosition().moveInDirection(direction);
                 urso.moveInDirection(0,direction);
-                o.getPosition().moveInDirection(direction);
+                objects[pos].getPosition().moveInDirection(direction);
+                urso.moveInDirection(pos, direction);
             }
         }
     }
