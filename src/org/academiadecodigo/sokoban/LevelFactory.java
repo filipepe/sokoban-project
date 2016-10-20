@@ -14,22 +14,21 @@ public class LevelFactory {
     private int pos;
 
     public GameObject[] createLevel(Field field){
-        objectsToReturn = new GameObject[33];
+        String[][] map = {
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
+                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
+                {"b", " ", " ", " ", "c", " ", " ", " ", "b"},
+                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
+                {"b", " ", " ", " ", " ", " ", "x", " ", "b"},
+                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"}};
+
+        objectsToReturn = new GameObject[numberOfObjects(map,field.getCols(), field.getRows())];
         objectsToReturn[0] = new Player(1,1,false);
         pos = 1;
 
-        String[][] map = {
-                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
-                {"b", "", "", "", "","","", "", "b"},
-                {"b", "", "", "","","", "", "", "b"},
-                {"b", "", "", "", "c","","", "", "b"},
-                {"b", "", "", "", "","","", "", "b"},
-                {"b", "", "", "","","", "x", "", "b"},
-                {"b", "", "", "","","", "", "", "b"},
-                {"b", "b", "b", "b", "b", "b","b","b", "b"}};
-
         fillArray(map, field.getCols(), field.getRows());
-
 
         return objectsToReturn;
 
@@ -58,7 +57,6 @@ public class LevelFactory {
     }
 
     private void fillArray(String[][] map, int cols, int rows){
-        System.out.println(objectsToReturn.length);
         for(int row = 0; row < rows; row++){
             for(int col = 0; col < cols; col++){
                 if(map[row][col].equals("b") ){
@@ -74,5 +72,18 @@ public class LevelFactory {
                 }
             }
         }
+    }
+
+    private int numberOfObjects(String[][] map, int cols, int rows){
+        int counter = 1;
+
+        for(int row = 0; row < rows; row++){
+            for(int col = 0; col < cols; col++){
+                if(map[row][col].equals("b") || map[row][col].equals("x") ||map[row][col].equals("c")){
+                    counter++;
+                }
+            }
+        }
+        return counter;
     }
 }
