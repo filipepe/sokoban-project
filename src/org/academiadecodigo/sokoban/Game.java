@@ -23,7 +23,7 @@ public class Game {
     public void init() {
         LevelFactory fabrica = new LevelFactory();
         field = new Field(9, 8);
-        objects = fabrica.createLevel(field);
+        objects = fabrica.level1(field);
         collisionDetector = new CollisionDetector(objects);
         simpleGfxField = new SimpleGfxField(10, 10);
         simpleGfxField.createPos(objects);
@@ -171,7 +171,7 @@ public class Game {
                 if (objects[i].getPosition().comparePosition(objects[k].getPosition())) {
                     simpleGfxField.changeBoxPicture(i, true);
                     count++;
-                    continue;
+                    break;
                 } else {
                     simpleGfxField.changeBoxPicture(i, false);
                 }
@@ -204,6 +204,6 @@ public class Game {
     }
 
     private void reset() {
-
+        
     }
 }

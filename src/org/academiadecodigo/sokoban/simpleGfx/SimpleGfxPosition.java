@@ -57,10 +57,17 @@ public class SimpleGfxPosition {
     }
 
     public void changeBoxPicture(int position, boolean onSpot) {
+        Picture pic;
         if (onSpot) {
-            picture[position].load("Box/sprite_1.png");
+            pic = new Picture(picture[position].getX(), picture[position].getY(),"Box/sprite_1.png");
+            picture[position].delete();
+            picture[position] = pic;
+            picture[position].draw();
         } else {
-            picture[position].load("Box/sprite_0.png");
+            pic = new Picture(picture[position].getX(), picture[position].getY(),"Box/sprite_0.png");
+            picture[position].delete();
+            picture[position] = pic;
+            picture[position].draw();
         }
     }
 
