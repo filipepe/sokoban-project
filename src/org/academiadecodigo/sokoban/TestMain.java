@@ -15,6 +15,7 @@ public class TestMain {
             g1.startGame();
         } catch (InterruptedException e) {
             e.printStackTrace();
+
         }
     }
 }

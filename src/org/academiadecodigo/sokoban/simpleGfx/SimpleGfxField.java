@@ -41,6 +41,16 @@ public class SimpleGfxField {
         positions.moveInDirection(posArray, direction);
     }
 
+    public void changeBoxPicture(int position, boolean onSpot){
+        positions.changeBoxPicture(position, onSpot);
+    }
+
+
+    public void changePlayerPicture(Direction direction, int actualPicture, boolean onSpot){
+        positions.changePlayerPicture(direction,actualPicture,onSpot);
+    }
+
+
 
     /**
      * @see GridPosition#show()

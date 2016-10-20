@@ -35,24 +35,74 @@ public class SimpleGfxPosition {
             }
         }
 
-        for (int i = 0; i < picture.length; i++) {
+        for (int i = picture.length-1; i >= 0; i--) {
             picture[i].draw();
         }
     }
 
     public void moveInDirection(int posArray, Direction direction) {
-        switch (direction){
+        switch (direction) {
             case UP:
                 picture[posArray].translate(0, -100);
                 break;
             case DOWN:
-                picture[posArray].translate(0,100);
+                picture[posArray].translate(0, 100);
                 break;
             case LEFT:
-                picture[posArray].translate(-100,0);
+                picture[posArray].translate(-100, 0);
                 break;
             case RIGHT:
-                picture[posArray].translate(100,0);
+                picture[posArray].translate(100, 0);
+        }
+    }
+
+    public void changeBoxPicture(int position, boolean onSpot) {
+        if (onSpot) {
+            picture[position].load("Box/sprite_1.png");
+        } else {
+            picture[position].load("Box/sprite_0.png");
+        }
+    }
+
+    public void changePlayerPicture(Direction direction, int actualPicture, boolean onSpot) {
+        if (onSpot) {
+            actualPicture += 4;
+            switch (direction) {
+                case UP:
+                    picture[0].load("ash_back/sprite_" + actualPicture+ ".png");
+                    break;
+                case DOWN:
+                    picture[0].load("ash_front/sprite_" + actualPicture + ".png");
+                    break;
+                case LEFT:
+                    picture[0].load("ash_left/sprite_" + actualPicture + ".png");
+                    break;
+                case RIGHT:
+                    picture[0].load("ash_right/sprite_" + actualPicture + ".png");
+                    break;
+                default:
+                    picture[0].load("ash_back/sprite_" + actualPicture + ".png");
+                    break;
+            }
+        } else {
+            switch (direction) {
+                case UP:
+                    picture[0].load("ash_back/sprite_" + actualPicture + ".png");
+                    break;
+                case DOWN:
+                    picture[0].load("ash_front/sprite_" + actualPicture + ".png");
+                    break;
+                case LEFT:
+                    picture[0].load("ash_left/sprite_" + actualPicture + ".png");
+                    break;
+                case RIGHT:
+                    picture[0].load("ash_right/sprite_" + actualPicture + ".png");
+                    break;
+                default:
+                    picture[0].load("ash_back/sprite_" + actualPicture + ".png");
+                    break;
+            }
+
         }
     }
 }
