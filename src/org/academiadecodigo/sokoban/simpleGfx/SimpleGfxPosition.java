@@ -22,16 +22,16 @@ public class SimpleGfxPosition {
 
         for (int i = 0; i < picture.length; i++) {
             if (gameObjects[i] instanceof Player) {
-                picture[i] = new Picture(gameObjects[i].getPosition().getCol() * 100 + 10, gameObjects[i].getPosition().getRow() * 100 + 10, "gameimages/ash_front/sprite_0.png");
+                picture[i] = new Picture(gameObjects[i].getPosition().getCol() * 100 + 10, gameObjects[i].getPosition().getRow() * 100 + 10, "resources/ash_front/sprite_0.png");
             }
             if (gameObjects[i] instanceof Box) {
-                picture[i] = new Picture(gameObjects[i].getPosition().getCol() * 100 + 10, gameObjects[i].getPosition().getRow() * 100 + 10, "gameimages/Box/sprite_0.png");
+                picture[i] = new Picture(gameObjects[i].getPosition().getCol() * 100 + 10, gameObjects[i].getPosition().getRow() * 100 + 10, "resources/Box/sprite_0.png");
             }
             if (gameObjects[i] instanceof SpotX) {
-                picture[i] = new Picture(gameObjects[i].getPosition().getCol() * 100 + 10, gameObjects[i].getPosition().getRow() * 100 + 10, "gameimages/SpotX/SpotX.png");
+                picture[i] = new Picture(gameObjects[i].getPosition().getCol() * 100 + 10, gameObjects[i].getPosition().getRow() * 100 + 10, "resources/SpotX/SpotX.png");
             }
             if (gameObjects[i] instanceof Brick) {
-                picture[i] = new Picture(gameObjects[i].getPosition().getCol() * 100 + 10, gameObjects[i].getPosition().getRow() * 100 + 10, "gameimages/Brick/brick.png");
+                picture[i] = new Picture(gameObjects[i].getPosition().getCol() * 100 + 10, gameObjects[i].getPosition().getRow() * 100 + 10, "resources/Brick/brick.png");
             }
         }
 
