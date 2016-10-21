@@ -12,21 +12,21 @@ import org.academiadecodigo.sokoban.gameobjects.movableobjects.Player;
 public class LevelFactory {
     private GameObject[] objectsToReturn;
     private int pos;
-    private int maxLevel = 5;
+    private int maxLevel = 7;
 
     public GameObject[] level1(Field field) {
         String[][] map = {
                 {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
-                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
-                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
-                {"b", " ", " ", " ", "x", " ", " ", " ", "b"},
-                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
-                {"b", " ", " ", " ", " ", " ", "c", " ", "b"},
-                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", " ", "c", "x", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
                 {"b", "b", "b", "b", "b", "b", "b", "b", "b"}};
 
         objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
-        objectsToReturn[0] = new Player(1, 1, false);
+        objectsToReturn[0] = new Player(3, 4, false);
         pos = 1;
 
         fillArray(map, field.getCols(), field.getRows());
@@ -36,26 +36,26 @@ public class LevelFactory {
     }
 
     public GameObject[] level2(Field field) {
-        objectsToReturn = new GameObject[52];
-        objectsToReturn[0] = new Player(6, 2, false);
-        pos = 1;
-
         String[][] map = {
                 {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
-                {"b", "b", "b", " ", " ", " ", " ", "b", "b"},
-                {"b", "b", "b", " ", "b", "b", " ", "b", "b"},
-                {"b", "b", "b", " ", "b", " ", "c", " ", "b"},
-                {"b", " ", "x", "x", "b", " ", "c", " ", "b"},
-                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
-                {"b", " ", " ", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", "x", "b", "b", "b"},
+                {"b", "b", " ", " ", " ", " ", "b", "b", "b"},
+                {"b", "b", " ", "b", "b", " ", "b", "b", "b"},
+                {"b", "b", " ", " ", "c", "c", " ", "b", "b"},
+                {"b", "b", " ", "b", " ", " ", " ", "b", "b"},
+                {"b", "b", "x", " ", " ", " ", "b", "b", "b"},
                 {"b", "b", "b", "b", "b", "b", "b", "b", "b"}};
 
-        fillArray(map, field.getCols(), field.getRows());
+        objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
+        objectsToReturn[0] = new Player(6, 4, false);
+        pos = 1;
 
+        fillArray(map, field.getCols(), field.getRows());
 
         return objectsToReturn;
 
     }
+
 
     public GameObject[] level3(Field field) {
         String[][] map = {
@@ -120,6 +120,50 @@ public class LevelFactory {
 
     }
 
+    public GameObject[] level6(Field field) {
+        String[][] map = {
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", " ", " ", " ", " ", "b", "b"},
+                {"b", "b", "b", " ", "b", "b", " ", "b", "b"},
+                {"b", "b", "b", " ", "b", " ", "c", " ", "b"},
+                {"b", " ", "x", "x", "b", " ", "c", " ", "b"},
+                {"b", " ", " ", " ", " ", " ", " ", " ", "b"},
+                {"b", " ", " ", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"}};
+
+        objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
+        objectsToReturn[0] = new Player(6, 2, false);
+        pos = 1;
+
+        fillArray(map, field.getCols(), field.getRows());
+
+        return objectsToReturn;
+
+    }
+
+    public GameObject[] level7(Field field) {
+        String[][] map = {
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", " ", " ", "b", "b"},
+                {"b", "b", "b", "b", "b", " ", " ", "b", "b"},
+                {"b", "b", "b", "b", "b", "c", "x", "b", "b"},
+                {"b", "b", " ", " ", " ", "c", "x", "b", "b"},
+                {"b", "b", " ", "b", " ", "c", "x", "b", "b"},
+                {"b", "b", " ", " ", " ", " ", "b", "b", "b"},
+                {"b", "b", "b", "b", "b", "b", "b", "b", "b"}};
+
+        objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
+        objectsToReturn[0] = new Player(5, 2, false);
+        pos = 1;
+
+        fillArray(map, field.getCols(), field.getRows());
+
+        return objectsToReturn;
+
+    }
+
+
+
     private void fillArray(String[][] map, int cols, int rows) {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
@@ -159,6 +203,10 @@ public class LevelFactory {
             return level4(field);
         } else if (level == 4) {
             return level5(field);
+        } else if (level == 5){
+            return level6(field);
+        } else if (level == 6){
+            return level7(field);
         } else {
             return null;
         }
@@ -173,8 +221,12 @@ public class LevelFactory {
             return level3(field);
         } else if (level == 4) {
             return level4(field);
-        } else {
+        } else if (level == 5){
             return level5(field);
+        } else if (level == 6){
+            return level6(field);
+        } else {
+            return level7(field);
         }
     }
 

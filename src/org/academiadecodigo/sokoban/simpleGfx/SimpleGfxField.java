@@ -88,8 +88,7 @@ public class SimpleGfxField {
      */
 
     public void hide() {
-        //rectangle.setColor(SimpleGfxColorMapper.getColor(GridColor.NO_COLOR));
-        //rectangle.draw();
+
         rectangle.delete();
     }
 

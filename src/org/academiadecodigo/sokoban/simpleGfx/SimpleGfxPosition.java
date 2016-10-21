@@ -114,13 +114,9 @@ public class SimpleGfxPosition {
     }
 
     public void changeWinnerPicture(int actualPicture){
-        System.out.println(actualPicture);
-        System.out.println(picture[0]);
-
         switch (actualPicture){
             case 0:
                 picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
-                System.out.println("here");
                 break;
             case 1:
                 picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
