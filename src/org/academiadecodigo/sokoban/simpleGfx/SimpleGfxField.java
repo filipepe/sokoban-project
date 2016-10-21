@@ -24,6 +24,7 @@ public class SimpleGfxField {
         init();
     }
 
+    // TODO: 21/10/16 remove hard coding
 
     private void init() {
         rectangle = new Rectangle(PADDING, PADDING, 900, 800);
@@ -50,7 +51,9 @@ public class SimpleGfxField {
         positions.changePlayerPicture(direction,actualPicture,onSpot);
     }
 
-
+    public void winner(int actualPicture){
+        positions.winner(actualPicture);
+    }
 
     /**
      * @see GridPosition#show()

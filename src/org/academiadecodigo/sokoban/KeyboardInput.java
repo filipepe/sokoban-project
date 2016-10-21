@@ -25,21 +25,25 @@ public class KeyboardInput implements KeyboardHandler{
         KeyboardEvent down = new KeyboardEvent();
         KeyboardEvent left = new KeyboardEvent();
         KeyboardEvent right = new KeyboardEvent();
+        KeyboardEvent reset = new KeyboardEvent();
 
         up.setKey(KeyboardEvent.KEY_UP);
         down.setKey(KeyboardEvent.KEY_DOWN);
         left.setKey(KeyboardEvent.KEY_LEFT);
         right.setKey(KeyboardEvent.KEY_RIGHT);
+        reset.setKey(KeyboardEvent.KEY_R);
 
         up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        reset.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         k.addEventListener(up);
         k.addEventListener(down);
         k.addEventListener(left);
         k.addEventListener(right);
+        k.addEventListener(reset);
     }
 
 
@@ -58,6 +62,8 @@ public class KeyboardInput implements KeyboardHandler{
             case KeyboardEvent.KEY_RIGHT:
                 gameUser.movePlayer(Direction.RIGHT);
                 break;
+            case KeyboardEvent.KEY_R:
+                gameUser.reset();
         }
     }
 

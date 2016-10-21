@@ -11,11 +11,8 @@ public class TestMain {
         g1.init();
         KeyboardInput keyboard = new KeyboardInput(g1);
 
-        try {
-            g1.startGame();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
 
-        }
+        g1.startGame();
     }
 }
+
