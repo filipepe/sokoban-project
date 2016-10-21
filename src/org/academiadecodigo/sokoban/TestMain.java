@@ -12,7 +12,7 @@ public class TestMain {
         KeyboardInput keyboard = new KeyboardInput(g1);
 
 
-        g1.startGame();
+        //g1.startGame();
     }
 }
 

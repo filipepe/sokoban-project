@@ -56,6 +56,7 @@ public class Player extends MovableObject {
                 actualPicture = 0;
                 break;
         }
+
     }
 
     @Override

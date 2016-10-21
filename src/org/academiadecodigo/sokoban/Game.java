@@ -8,6 +8,10 @@ import org.academiadecodigo.sokoban.gameobjects.movableobjects.Player;
 import org.academiadecodigo.sokoban.position.Direction;
 import org.academiadecodigo.sokoban.simpleGfx.SimpleGfxField;
 
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Created by codecadet on 18/10/16.
  */
@@ -18,34 +22,30 @@ public class Game {
     private SimpleGfxField simpleGfxField;
     private int[] spots;
     private int[] boxes;
-    private LevelFactory fabrica;
+    private LevelFactory factory;
     private int level;
 
     public void init() {
-        fabrica = new LevelFactory();
+        factory = new LevelFactory();
         field = new Field(9, 8);
-        objects = fabrica.level1(field);
+        objects = factory.level1(field);
         collisionDetector = new CollisionDetector(objects);
-        simpleGfxField = new SimpleGfxField(10, 10);
-        simpleGfxField.createPos(objects);
+        // TODO: 21/10/16 change new simplefield
+        simpleGfxField = new SimpleGfxField(10, 10, false);
+
         spots = spotXIndex();
         boxes = boxIndex();
         level = 1;
+        startMusic();
 
-
-        //startGame();
 
     }
 
     public void startGame() {
 
-        for (int i = 0; i < objects.length; i++) {
-            System.out.println(objects[i]);
-        }
+        simpleGfxField.deleteStartPicture();
 
-        for (int i = 0; i < objects.length; i++) {
-            System.out.println(objects[i]);
-        }
+        simpleGfxField.createPos(objects);
 
 
     }
@@ -175,11 +175,11 @@ public class Game {
         ((Player) objects[0]).setActualPicture(0);
 
         for (int i = 0; i < 12; i++) {
-          //  Thread.sleep(200);
+            //Thread.sleep(200);
             // TODO: 21/10/16 Fix Celebration Dance!
             simpleGfxField.winner(((Player) objects[0]).getActualPicture());
+            //Thread.sleep(1000);
             ((Player) objects[0]).setActualPicture();
-
         }
 
         nextLevel();
@@ -203,25 +203,55 @@ public class Game {
     }
 
     public void reset() {
-        // TODO: 20/10/16 Change after level implementation, caralho!
-        objects = fabrica.resetLevel(level, field);
+        objects = factory.resetLevel(level, field);
         collisionDetector = new CollisionDetector(objects);
-        simpleGfxField = new SimpleGfxField(10, 10);
+        // TODO: 21/10/16 change new simplegraphics
+        simpleGfxField = new SimpleGfxField(10, 10, true);
         simpleGfxField.createPos(objects);
         spots = spotXIndex();
         boxes = boxIndex();
     }
 
     private void nextLevel() {
-        //String n = "level" + level;
-        objects = fabrica.getNextLevel(level, field);
+        objects = factory.getNextLevel(level, field);
         collisionDetector = new CollisionDetector(objects);
-        simpleGfxField = new SimpleGfxField(10, 10);
+        // TODO: 21/10/16 change new simplegraphics
+        simpleGfxField = new SimpleGfxField(10, 10, true);
         simpleGfxField.createPos(objects);
         spots = spotXIndex();
         boxes = boxIndex();
-        // TODO: 21/10/16 change this instruction
-        level++;
+        changeLevel();
+    }
+
+    private void changeLevel() {
+        if (level < factory.getMaxLevel()) {
+            level++;
+        } else {
+            level = 1;
+        }
+    }
+
+    private void startMusic() {
+        //AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(new File("resources/sample.wav"));
+        AudioInputStream audioInputStream = null;
+        try {
+            audioInputStream = AudioSystem.getAudioInputStream(new File("resources/musicas/cardigans.wav"));
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Clip clip1 = AudioSystem.getClip();
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //clip.open(audioInputStream);
 
     }
 }

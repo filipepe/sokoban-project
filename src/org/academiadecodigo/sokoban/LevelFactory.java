@@ -12,6 +12,7 @@ import org.academiadecodigo.sokoban.gameobjects.movableobjects.Player;
 public class LevelFactory {
     private GameObject[] objectsToReturn;
     private int pos;
+    private int maxLevel = 5;
 
     public GameObject[] level1(Field field) {
         String[][] map = {
@@ -175,5 +176,9 @@ public class LevelFactory {
         } else {
             return level5(field);
         }
+    }
+
+    public int getMaxLevel(){
+        return maxLevel;
     }
 }
