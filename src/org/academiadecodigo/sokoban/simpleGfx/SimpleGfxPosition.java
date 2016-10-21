@@ -115,6 +115,7 @@ public class SimpleGfxPosition {
 
     public void changeWinnerPicture(int actualPicture){
         System.out.println(actualPicture);
+        System.out.println(picture[0]);
 
         switch (actualPicture){
             case 0:

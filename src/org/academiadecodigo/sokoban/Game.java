@@ -11,6 +11,8 @@ import org.academiadecodigo.sokoban.simpleGfx.SimpleGfxField;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by codecadet on 18/10/16.
@@ -35,7 +37,7 @@ public class Game {
 
         spots = spotXIndex();
         boxes = boxIndex();
-        level = 1;
+        level = 4;
         startMusic();
 
 
@@ -172,17 +174,33 @@ public class Game {
 
     private void winner() throws InterruptedException {
 
+
         ((Player) objects[0]).setActualPicture(0);
 
+        System.out.println("going to loop pictures");
+        /*
         for (int i = 0; i < 12; i++) {
+            System.out.println("inside for loop");
             //Thread.sleep(200);
             // TODO: 21/10/16 Fix Celebration Dance!
+            System.out.println("changing picture to : " + ((Player) objects[0]).getActualPicture());
+
             simpleGfxField.winner(((Player) objects[0]).getActualPicture());
-            //Thread.sleep(1000);
+            //Thread.sleep(5);
+            System.out.println("slept");
             ((Player) objects[0]).setActualPicture();
+            System.out.println("the new picture is: " + ((Player) objects[0]).getActualPicture());
+            System.out.println("thread inside loop: " + Thread.currentThread().getName());
         }
 
-        nextLevel();
+        */
+        //simpleGfxField.winner(((Player) objects[0]).getActualPicture());
+
+        long startTime = System.currentTimeMillis();
+        Timer t = new Timer("next-level");
+        t.schedule(new EuricoTimer(), 100, 300);
+
+
     }
 
     private void playerInSpot() {
@@ -213,6 +231,7 @@ public class Game {
     }
 
     private void nextLevel() {
+
         if(level != 0) {
             System.out.println("credits");
             objects = factory.getNextLevel(level, field);
@@ -231,7 +250,7 @@ public class Game {
     }
 
     private void changeLevel() {
-        if (level < factory.getMaxLevel()) {
+        if (level < factory.getMaxLevel() - 1) {
             level++;
         } else {
             level = 0;
@@ -260,5 +279,30 @@ public class Game {
         }
         //clip.open(audioInputStream);
 
+    }
+
+
+    private class EuricoTimer extends TimerTask {
+
+        private int count;
+
+
+        @Override
+        public void run() {
+            System.out.println("changing picture to : " + ((Player) objects[0]).getActualPicture());
+
+            simpleGfxField.winner(((Player) objects[0]).getActualPicture());
+            //Thread.sleep(5);
+            System.out.println("slept");
+            ((Player) objects[0]).setActualPicture();
+            System.out.println("the new picture is: " + ((Player) objects[0]).getActualPicture());
+            System.out.println("thread inside loop: " + Thread.currentThread().getName());
+            count++;
+
+            if(count > 12) {
+                this.cancel();
+                nextLevel();
+            }
+        }
     }
 }
