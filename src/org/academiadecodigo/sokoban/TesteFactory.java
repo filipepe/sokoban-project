@@ -11,7 +11,7 @@ public class TesteFactory {
     public static void main(String[] args) {
         LevelFactory fabrica = new LevelFactory();
         Field field = new Field(7,7);
-        GameObject[] objectos = fabrica.createLevel(field);
+        GameObject[] objectos = fabrica.level1(field);
 
         for(int i = 0; i < objectos.length; i++ ){
             System.out.println(objectos[i]);

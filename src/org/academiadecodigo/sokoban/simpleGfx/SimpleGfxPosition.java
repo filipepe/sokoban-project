@@ -112,4 +112,27 @@ public class SimpleGfxPosition {
 
         }
     }
+
+    public void winner(int actualPicture){
+        System.out.println(actualPicture);
+        switch (actualPicture){
+            case 0:
+                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                System.out.println("here");
+                break;
+            case 1:
+                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                break;
+            case 2:
+                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                break;
+            case 3:
+                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                break;
+            default:
+                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                break;
+        }
+
+    }
 }

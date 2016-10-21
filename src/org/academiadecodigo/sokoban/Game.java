@@ -18,10 +18,11 @@ public class Game {
     private SimpleGfxField simpleGfxField;
     private int[] spots;
     private int[] boxes;
-
+    private LevelFactory fabrica;
+    private int level;
 
     public void init() {
-        LevelFactory fabrica = new LevelFactory();
+        fabrica = new LevelFactory();
         field = new Field(9, 8);
         objects = fabrica.level1(field);
         collisionDetector = new CollisionDetector(objects);
@@ -29,35 +30,19 @@ public class Game {
         simpleGfxField.createPos(objects);
         spots = spotXIndex();
         boxes = boxIndex();
+        level = 1;
 
 
         //startGame();
 
     }
 
-    public void startGame() throws InterruptedException {
+    public void startGame() {
 
         for (int i = 0; i < objects.length; i++) {
             System.out.println(objects[i]);
         }
 
-
-        /*
-        System.out.println(objects[0].getPosition());
-        movePlayer(Direction.UP);
-        System.out.println(objects[0].getPosition());
-        movePlayer(Direction.RIGHT);
-        System.out.println(objects[0].getPosition());
-        movePlayer(Direction.DOWN);
-        System.out.println(objects[0].getPosition());
-        for(int i = 0; i < objects.length; i++ ){
-            System.out.println(objects[i]);
-        }
-        movePlayer(Direction.DOWN);
-        System.out.println(objects[0].getPosition());
-
-*/
-        //Thread.sleep(5000);
         for (int i = 0; i < objects.length; i++) {
             System.out.println(objects[i]);
         }
@@ -82,29 +67,28 @@ public class Game {
     }
 
     public void movePlayer(Direction direction) {
-        if(!switchDirection(direction)){
-        int pos;
-        pos = isMovable(direction, objects[0]);
-        if (pos == -1) {
-            objects[0].getPosition().moveInDirection(direction);
-            simpleGfxField.moveInDirection(0, direction);
-            ((Player) objects[0]).setActualPicture();
-            playerInSpot();
-        } else if (objects[pos] instanceof Box) {
-            int pos2;
-            pos2 = isMovable(direction, objects[pos]);
-            if (pos2 == -1) {
+        if (!switchDirection(direction)) {
+            int pos;
+            pos = isMovable(direction, objects[0]);
+            if (pos == -1) {
                 objects[0].getPosition().moveInDirection(direction);
                 simpleGfxField.moveInDirection(0, direction);
                 ((Player) objects[0]).setActualPicture();
                 playerInSpot();
-                objects[pos].getPosition().moveInDirection(direction);
-                simpleGfxField.moveInDirection(pos, direction);
-                verifyBoxSpot();
+            } else if (objects[pos] instanceof Box) {
+                int pos2;
+                pos2 = isMovable(direction, objects[pos]);
+                if (pos2 == -1) {
+                    objects[0].getPosition().moveInDirection(direction);
+                    simpleGfxField.moveInDirection(0, direction);
+                    ((Player) objects[0]).setActualPicture();
+                    playerInSpot();
+                    objects[pos].getPosition().moveInDirection(direction);
+                    simpleGfxField.moveInDirection(pos, direction);
+                    verifyBoxSpot();
+                }
             }
-        }
-        }
-        else {
+        } else {
             playerInSpot();
         }
     }
@@ -178,12 +162,27 @@ public class Game {
             }
         }
         if (count == spots.length) {
-            winner();
+            try {
+                winner();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void winner() {
-        System.out.println("Winner winner chicken dinner");
+    private void winner() throws InterruptedException {
+
+        ((Player) objects[0]).setActualPicture(0);
+
+        for (int i = 0; i < 12; i++) {
+          //  Thread.sleep(200);
+            // TODO: 21/10/16 Fix Celebration Dance!
+            simpleGfxField.winner(((Player) objects[0]).getActualPicture());
+            ((Player) objects[0]).setActualPicture();
+
+        }
+
+        nextLevel();
     }
 
     private void playerInSpot() {
@@ -203,7 +202,26 @@ public class Game {
 
     }
 
-    private void reset() {
-        
+    public void reset() {
+        // TODO: 20/10/16 Change after level implementation, caralho!
+        objects = fabrica.resetLevel(level, field);
+        collisionDetector = new CollisionDetector(objects);
+        simpleGfxField = new SimpleGfxField(10, 10);
+        simpleGfxField.createPos(objects);
+        spots = spotXIndex();
+        boxes = boxIndex();
+    }
+
+    private void nextLevel() {
+        //String n = "level" + level;
+        objects = fabrica.getNextLevel(level, field);
+        collisionDetector = new CollisionDetector(objects);
+        simpleGfxField = new SimpleGfxField(10, 10);
+        simpleGfxField.createPos(objects);
+        spots = spotXIndex();
+        boxes = boxIndex();
+        // TODO: 21/10/16 change this instruction
+        level++;
+
     }
 }
