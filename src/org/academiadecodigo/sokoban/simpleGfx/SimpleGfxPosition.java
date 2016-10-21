@@ -113,7 +113,7 @@ public class SimpleGfxPosition {
         }
     }
 
-    public void winner(int actualPicture){
+    public void changeWinnerPicture(int actualPicture){
         System.out.println(actualPicture);
 
         switch (actualPicture){
@@ -134,7 +134,5 @@ public class SimpleGfxPosition {
                 picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
                 break;
         }
-
-
     }
 }

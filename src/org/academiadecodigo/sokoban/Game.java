@@ -213,21 +213,28 @@ public class Game {
     }
 
     private void nextLevel() {
-        objects = factory.getNextLevel(level, field);
-        collisionDetector = new CollisionDetector(objects);
-        // TODO: 21/10/16 change new simplegraphics
-        simpleGfxField = new SimpleGfxField(10, 10, true);
-        simpleGfxField.createPos(objects);
-        spots = spotXIndex();
-        boxes = boxIndex();
-        changeLevel();
+        if(level != 0) {
+            System.out.println("credits");
+            objects = factory.getNextLevel(level, field);
+            collisionDetector = new CollisionDetector(objects);
+            // TODO: 21/10/16 change new simplegraphics
+            simpleGfxField = new SimpleGfxField(10, 10, true);
+            simpleGfxField.createPos(objects);
+            spots = spotXIndex();
+            boxes = boxIndex();
+            changeLevel();
+        }
+        else {
+            System.out.println("credits");
+            simpleGfxField.credits();
+        }
     }
 
     private void changeLevel() {
         if (level < factory.getMaxLevel()) {
             level++;
         } else {
-            level = 1;
+            level = 0;
         }
     }
 

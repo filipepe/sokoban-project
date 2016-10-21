@@ -160,7 +160,7 @@ public class LevelFactory {
         } else if (level == 4) {
             return level5(field);
         } else {
-            return level1(field);
+            return null;
         }
     }
 

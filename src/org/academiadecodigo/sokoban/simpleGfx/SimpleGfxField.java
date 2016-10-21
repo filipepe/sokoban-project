@@ -15,6 +15,7 @@ public class SimpleGfxField {
     private int cols;
     private int rows;
     private Picture startPicture;
+    private Picture creditsPicture;
     private boolean gameStarted;
     private final Color GROUND = new Color(0, 255, 197);
     public static final int PADDING = 10;
@@ -56,9 +57,15 @@ public class SimpleGfxField {
     }
 
     public void winner(int actualPicture) {
-        positions.winner(actualPicture);
+        positions.changeWinnerPicture(actualPicture);
     }
 
+    public void credits(){
+
+        creditsPicture = new Picture(PADDING, PADDING, "background/credits.png");
+
+        creditsPicture.draw();
+    }
     /**
      * @see GridPosition#show()
      */
@@ -72,6 +79,7 @@ public class SimpleGfxField {
     }
 
     public void deleteStartPicture() {
+
         startPicture.delete();
     }
 
