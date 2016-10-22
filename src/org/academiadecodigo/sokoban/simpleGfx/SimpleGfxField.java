@@ -20,6 +20,8 @@ public class SimpleGfxField {
     private final Color GROUND = new Color(0, 255, 197);
     public static final int PADDING = 10;
     public static final int SIZE = 100;
+    public static final int WIDTH = 900;
+    public static final int HEIGHT = 800;
 
     public SimpleGfxField(int cols, int rows, boolean gameStarted) {
         this.cols = cols;
@@ -28,10 +30,9 @@ public class SimpleGfxField {
         init();
     }
 
-    // TODO: 21/10/16 remove hard coding
 
     private void init() {
-        rectangle = new Rectangle(PADDING, PADDING, 900, 800);
+        rectangle = new Rectangle(PADDING, PADDING, WIDTH, HEIGHT);
         rectangle.setColor(GROUND);
         if (!gameStarted) {
             startPicture = new Picture(PADDING, PADDING, "background/init.png");
