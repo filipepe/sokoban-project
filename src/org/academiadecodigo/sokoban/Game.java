@@ -26,6 +26,8 @@ public class Game {
     private int[] boxes;
     private LevelFactory factory;
     private int level;
+    private boolean keyboardBlocked;
+    private boolean gameStarted;
 
     public void init() {
         factory = new LevelFactory();
@@ -42,7 +44,7 @@ public class Game {
     }
 
     public void startGame() {
-
+        gameStarted = true;
         simpleGfxField.deleteStartPicture();
         simpleGfxField.createPos(objects);
 
@@ -164,6 +166,7 @@ public class Game {
     }
 
     private void winner() throws InterruptedException {
+        keyboardBlocked = true;
 
         ((Player) objects[0]).setActualPicture(0);
 
@@ -186,11 +189,16 @@ public class Game {
 
 
     // TODO: 21/10/16 método;
-    private void quit() {
+    public void quit() {
+        objects = factory.level1(field);
+        collisionDetector = new CollisionDetector(objects);
+        simpleGfxField = new SimpleGfxField(10, 10, false);
 
+        spots = spotXIndex();
+        boxes = boxIndex();
+        level = 1;
 
-
-
+        gameStarted = false;
     }
 
     public void reset() {
@@ -261,7 +269,16 @@ public class Game {
             if (count > 12) {
                 this.cancel();
                 nextLevel();
+                keyboardBlocked = false;
             }
         }
+    }
+
+    public boolean isKeyboardBlocked(){
+        return keyboardBlocked;
+    }
+
+    public boolean isGameStarted(){
+        return  gameStarted;
     }
 }

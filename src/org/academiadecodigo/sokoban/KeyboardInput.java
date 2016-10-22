@@ -13,7 +13,6 @@ import org.academiadecodigo.sokoban.position.Direction;
 public class KeyboardInput implements KeyboardHandler{
     private Game gameUser;
     private Keyboard k;
-    private boolean gameStarted;
 
     public KeyboardInput(Game gameUser){
         this.gameUser = gameUser;
@@ -28,6 +27,7 @@ public class KeyboardInput implements KeyboardHandler{
         KeyboardEvent right = new KeyboardEvent();
         KeyboardEvent reset = new KeyboardEvent();
         KeyboardEvent start = new KeyboardEvent();
+        KeyboardEvent quit = new KeyboardEvent();
 
         up.setKey(KeyboardEvent.KEY_UP);
         down.setKey(KeyboardEvent.KEY_DOWN);
@@ -35,6 +35,7 @@ public class KeyboardInput implements KeyboardHandler{
         right.setKey(KeyboardEvent.KEY_RIGHT);
         reset.setKey(KeyboardEvent.KEY_R);
         start.setKey(KeyboardEvent.KEY_N);
+        quit.setKey(KeyboardEvent.KEY_Q);
 
         up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -42,6 +43,7 @@ public class KeyboardInput implements KeyboardHandler{
         right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         reset.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         start.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        quit.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         k.addEventListener(up);
         k.addEventListener(down);
@@ -49,33 +51,36 @@ public class KeyboardInput implements KeyboardHandler{
         k.addEventListener(right);
         k.addEventListener(reset);
         k.addEventListener(start);
+        k.addEventListener(quit);
     }
 
 
     @Override
     public void keyPressed(KeyboardEvent e) {
-        switch (e.getKey()){
-            // TODO: 21/10/16 adicionar condicao de bloqueio de teclas
-            case KeyboardEvent.KEY_UP:
-                gameUser.movePlayer(Direction.UP);
-                break;
-            case KeyboardEvent.KEY_DOWN:
-                gameUser.movePlayer(Direction.DOWN);
-                break;
-            case KeyboardEvent.KEY_LEFT:
-                gameUser.movePlayer(Direction.LEFT);
-                break;
-            case KeyboardEvent.KEY_RIGHT:
-                gameUser.movePlayer(Direction.RIGHT);
-                break;
-            case KeyboardEvent.KEY_R:
-                gameUser.reset();
-                break;
-            case KeyboardEvent.KEY_N:
-                if(!gameStarted){
+        if(!gameUser.isKeyboardBlocked() && gameUser.isGameStarted()) {
+            switch (e.getKey()) {
+                case KeyboardEvent.KEY_UP:
+                        gameUser.movePlayer(Direction.UP);
+                    break;
+                case KeyboardEvent.KEY_DOWN:
+                    gameUser.movePlayer(Direction.DOWN);
+                    break;
+                case KeyboardEvent.KEY_LEFT:
+                    gameUser.movePlayer(Direction.LEFT);
+                    break;
+                case KeyboardEvent.KEY_RIGHT:
+                    gameUser.movePlayer(Direction.RIGHT);
+                    break;
+                case KeyboardEvent.KEY_R:
+                    gameUser.reset();
+                    break;
+                case KeyboardEvent.KEY_Q:
+                    gameUser.quit();
+                    break;
+            }
+        }
+        if (!gameUser.isGameStarted() && e.getKey() == KeyboardEvent.KEY_N){
                     gameUser.startGame();
-                    gameStarted = true;
-                }
         }
     }
 
