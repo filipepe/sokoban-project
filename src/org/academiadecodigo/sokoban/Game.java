@@ -247,6 +247,7 @@ public class Game {
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
+            clip.loop(clip.LOOP_CONTINUOUSLY);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         } catch (IOException e) {
