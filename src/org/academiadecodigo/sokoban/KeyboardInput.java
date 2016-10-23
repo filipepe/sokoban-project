@@ -19,6 +19,10 @@ public class KeyboardInput implements KeyboardHandler{
         start();
     }
 
+    /**
+     * Loads a set of keyboard keys to the program
+     */
+
     public void start(){
         k = new Keyboard(this);
         KeyboardEvent up = new KeyboardEvent();
@@ -54,6 +58,11 @@ public class KeyboardInput implements KeyboardHandler{
         k.addEventListener(quit);
     }
 
+
+
+    /**
+     * Adds game events to keyboard events
+     * */
 
     @Override
     public void keyPressed(KeyboardEvent e) {

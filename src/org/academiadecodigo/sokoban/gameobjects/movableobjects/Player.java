@@ -9,7 +9,6 @@ import org.academiadecodigo.sokoban.position.Direction;
 public class Player extends MovableObject {
     private Direction direction;
     private int actualPicture;
-    //private CollisionDetector detector;
 
     public Player(int col, int row, boolean crossable) {
         super(col, row, crossable);
@@ -18,25 +17,41 @@ public class Player extends MovableObject {
 
     }
 
-    private void pushBox(Direction direction) {
-
-    }
+    /**
+     * Sets Player direction
+     */
 
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
+    /**
+     * Retrieves Player actual direction
+     */
+
     public Direction getDirection() {
         return direction;
     }
+
+    /**
+     * Retrieves Player actual picture
+     */
 
     public int getActualPicture() {
         return actualPicture;
     }
 
+    /**
+     * Sets new picture for Player when Player changes direction
+     */
+
     public void setActualPicture(int actualPicture) {
         this.actualPicture = actualPicture;
     }
+
+    /**
+     * Gives a new value to actualPicture of Player according to previous picture
+     * */
 
     public void setActualPicture() {
         switch (actualPicture) {
@@ -59,12 +74,9 @@ public class Player extends MovableObject {
 
     }
 
-    @Override
-    public boolean isMovable(Direction direction) {
-
-        throw new UnsupportedOperationException();
-
-    }
+    /**
+     * Moves the Player in given direction
+     */
 
     @Override
     public void move(Direction direction) {

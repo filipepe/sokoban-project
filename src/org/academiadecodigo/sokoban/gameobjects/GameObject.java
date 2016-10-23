@@ -17,9 +17,17 @@ public abstract class GameObject {
 
     }
 
+    /**
+     * Can the Player cross the object?
+     */
+
     public boolean isCrossable(){
         return crossable;
     }
+
+    /**
+     * What is the object position?
+     */
 
     public Position getPosition() {
         return position;

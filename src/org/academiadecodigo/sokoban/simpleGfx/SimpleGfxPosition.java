@@ -16,6 +16,11 @@ import org.academiadecodigo.sokoban.position.Direction;
 public class SimpleGfxPosition {
     private Picture[] picture;
 
+    /**
+     * When a new graphic field is constructed the gameObjects array is populated with
+     * Player, Box, SpotX and Brick pictures
+     */
+
     public SimpleGfxPosition(GameObject[] gameObjects) {
 
         picture = new Picture[gameObjects.length];
@@ -40,21 +45,29 @@ public class SimpleGfxPosition {
         }
     }
 
+    /**
+     * Moves pictures in a given direction a fixed number of pixels
+     */
+
     public void moveInDirection(int posArray, Direction direction) {
         switch (direction) {
             case UP:
-                picture[posArray].translate(0, -100);
+                picture[posArray].translate(0, -SimpleGfxField.SIZE);
                 break;
             case DOWN:
-                picture[posArray].translate(0, 100);
+                picture[posArray].translate(0, SimpleGfxField.SIZE);
                 break;
             case LEFT:
-                picture[posArray].translate(-100, 0);
+                picture[posArray].translate(-SimpleGfxField.SIZE, 0);
                 break;
             case RIGHT:
-                picture[posArray].translate(100, 0);
+                picture[posArray].translate(SimpleGfxField.SIZE, 0);
         }
     }
+
+    /**
+     * Changes box picture when it's on SpotX
+     */
 
     public void changeBoxPicture(int position, boolean onSpot) {
         Picture pic;
@@ -70,6 +83,10 @@ public class SimpleGfxPosition {
             picture[position].draw();
         }
     }
+
+    /**
+     * Changes player picture when Player gets a new direction, whether is on SpotX or not
+     */
 
     public void changePlayerPicture(Direction direction, int actualPicture, boolean onSpot) {
         if (onSpot) {
@@ -112,6 +129,10 @@ public class SimpleGfxPosition {
 
         }
     }
+
+    /**
+     * That's the Winner Dance baby!
+     */
 
     public void changeWinnerPicture(int actualPicture){
         switch (actualPicture){

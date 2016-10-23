@@ -17,10 +17,35 @@ public class SimpleGfxField {
     private Picture startPicture;
     private Picture creditsPicture;
     private boolean gameStarted;
+
+    /**
+     * Background Color
+     */
+
     private final Color GROUND = new Color(0, 255, 197);
+
+    /**
+     * Padding value
+     */
+
     public static final int PADDING = 10;
+
+    /**
+     * Cell size in Pixels (SIZE*SIZE)
+     */
+
     public static final int SIZE = 100;
+
+    /**
+     * Width Value
+     */
+
     public static final int WIDTH = 900;
+
+    /**
+     * Height Value
+     */
+
     public static final int HEIGHT = 800;
 
     public SimpleGfxField(int cols, int rows, boolean gameStarted) {
@@ -30,6 +55,13 @@ public class SimpleGfxField {
         init();
     }
 
+    /**
+     * The background is created with a super fresh color
+     * If the game hasn't started yet it loads a legendary masterpiece made by one of the most
+     * memorable Code Cadets ever
+     *
+     * @see SimpleGfxField#show()
+     */
 
     private void init() {
         rectangle = new Rectangle(PADDING, PADDING, WIDTH, HEIGHT);
@@ -40,26 +72,51 @@ public class SimpleGfxField {
         show();
     }
 
+    /**
+     * Creates a new position in the graphic field
+     */
+
     public void createPos(GameObject[] gameObject) {
         positions = new SimpleGfxPosition(gameObject);
     }
+
+    /**
+     * Moves object picture in a direction
+     */
 
     public void moveInDirection(int posArray, Direction direction) {
         positions.moveInDirection(posArray, direction);
     }
 
+    /**
+     * Changes the Box picture when it is in the same position as a SpotX
+     */
+
     public void changeBoxPicture(int position, boolean onSpot) {
         positions.changeBoxPicture(position, onSpot);
     }
 
+    /**
+     * Changes Player picture
+     * @see SimpleGfxPosition#changePlayerPicture(Direction, int, boolean)
+     */
 
     public void changePlayerPicture(Direction direction, int actualPicture, boolean onSpot) {
         positions.changePlayerPicture(direction, actualPicture, onSpot);
     }
 
+    /**
+     * Changes Player picture when level is completed
+     * @see SimpleGfxPosition#changeWinnerPicture(int)
+     */
+
     public void winner(int actualPicture) {
         positions.changeWinnerPicture(actualPicture);
     }
+
+    /**
+     * Loads credits picture
+     */
 
     public void credits(){
 
@@ -67,8 +124,11 @@ public class SimpleGfxField {
 
         creditsPicture.draw();
     }
+
     /**
-     * @see GridPosition#show()
+     * The background is filled with that beautiful color
+     * Then the legendary masterpiece is drawn into place
+     * Game as started
      */
 
     public void show() {
@@ -79,29 +139,26 @@ public class SimpleGfxField {
         }
     }
 
+    /**
+     * Hides initial menu
+     */
+
     public void deleteStartPicture() {
 
         startPicture.delete();
     }
 
     /**
-     * @see GridPosition#hide()
+     * Converts row into pixel height
      */
-
-    public void hide() {
-
-        rectangle.delete();
-    }
-
-    //public GridPosition makeGridPosition(int col, int row) {
-    // return new SimpleGfxGridPosition(col, row, this);
-    //}
-
 
     public static int rowToY(int row) {
         return row * SIZE;
     }
 
+    /**
+     * Converts col into pixel width
+     */
 
     public static int columnToX(int column) {
         return column * SIZE;

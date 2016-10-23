@@ -8,7 +8,6 @@ public class SpotX extends GameObject {
         super(col, row, crossable);
     }
 
-
     @Override
     public String toString() {
         return "SpotX";

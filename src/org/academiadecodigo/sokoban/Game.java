@@ -19,33 +19,45 @@ import java.util.TimerTask;
  */
 public class Game {
 
-/*
+/**
    * Abstract Game Field
 */
     private Field field;
-/*
+/**
    * Array of Game Objects
 */
     private GameObject[] objects;
-/*
+/**
    * Player and Boxes Collision Detector
 */
     private CollisionDetector collisionDetector;
-/*
+/**
    * Graphic Game Field
 */
     private SimpleGfxField simpleGfxField;
-    //Array of spotsX
+/**
+    Array of spotsX
+*/
     private int[] spots;
-    //Array of boxes
+/**
+    Array of boxes
+*/
     private int[] boxes;
-    //Factor of Game Levels
+/**
+    Factor of Game Levels
+*/
     private LevelFactory factory;
-    //Game Level
+/**
+    Game Level
+*/
     private int level;
-    //Blocker for Keyboard used on initial menu, credits and when a Player wins the game
+/**
+    Blocker for Keyboard used on initial menu, credits and when a Player wins the game
+*/
     private boolean keyboardBlocked;
-    //Checks if game has started
+/**
+    Checks if game has started
+*/
     private boolean gameStarted;
 
 
@@ -62,9 +74,9 @@ public class Game {
         objects = factory.level1(field);
         collisionDetector = new CollisionDetector(objects);
         simpleGfxField = new SimpleGfxField(10, 10, false);
-
         spots = spotXIndex();
         boxes = boxIndex();
+
         changeLevel();
         startMusic();
 

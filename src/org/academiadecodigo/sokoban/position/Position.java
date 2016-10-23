@@ -15,13 +15,25 @@ public class Position {
     }
 
 
+    /**
+     * Retrieves column
+     */
+
     public int getCol() {
         return col;
     }
 
+    /**
+     * Retrieves row
+     */
+
     public int getRow() {
         return row;
     }
+
+    /**
+     * Moves in given direction on abstract field
+     */
 
     public void moveInDirection(Direction direction) {
 
@@ -44,21 +56,42 @@ public class Position {
         }
     }
 
+    /**
+     * Moves 1 row Up
+     */
+
     private void moveUp() {
         row--;
     }
+
+    /**
+     * Moves 1 row Down
+     */
 
     private void moveDown() {
         row++;
     }
 
+    /**
+     * Moves 1 column Left
+     */
+
     private void moveLeft() {
         col--;
     }
 
+    /**
+     * Moves 1 column Right
+     */
+
     private void moveRight() {
         col++;
     }
+
+    /**
+     * Compares row and column
+     * Returns true if position is coincident
+     */
 
     public boolean comparePosition(Position positionToCompare){
             return row == positionToCompare.getRow() && col == positionToCompare.getCol();

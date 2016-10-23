@@ -18,10 +18,19 @@ public class CollisionDetector {
         this.gameObjects = gameObjects;
     }
 
+    /**
+     * Checks if objects collide
+     * If object is a Player and there is no object in the adjacent position, i.e. the next position in given direction,
+     * then it's OK
+     * If the object is a brick or a box, it returns its position in the array of game objects
+     *
+     * If object is a Box and there is no object in the adjacent position, its alright baby
+     * Otherwise, it returns its position in the array of game objects
+     * */
+    
     public int checkCollision(Direction direction, GameObject object) {
 
         Position tempPosition = adjacentPosition(direction, object);
-
 
         if (object instanceof Player) {
 
@@ -36,7 +45,7 @@ public class CollisionDetector {
             return -1;
         } else {
             for (int i = 1; i < gameObjects.length; i++) {
-                if (gameObjects[i] == object || !gameObjects[i].getPosition().comparePosition(tempPosition)) {
+                if (!gameObjects[i].getPosition().comparePosition(tempPosition)) {
                     continue;
                 }
                 return i;
@@ -45,6 +54,10 @@ public class CollisionDetector {
         }
 
     }
+
+    /**
+     * Returns the adjacent position to the object moving in a given direction
+     */
 
     private Position adjacentPosition(Direction direction, GameObject gameObject) {
 

@@ -10,11 +10,9 @@ public class Box extends MovableObject {
         super(col, row, crossable);
     }
 
-    @Override
-    public boolean isMovable(Direction direction){
-        throw new UnsupportedOperationException();
-
-    }
+    /**
+     * Moves box in given direction
+     */
 
     @Override
     public void move(Direction direction){

@@ -14,6 +14,15 @@ public class LevelFactory {
     private int pos;
     private int maxLevel = 7;
 
+
+    /**
+     * Level ONE factory
+     * Map is defined in array of Strings
+     * New array of objects is created with the number of objects in the map
+     * Player is created in position
+     * Objects are created in the array of objects
+     */
+
     public GameObject[] level1(Field field) {
         String[][] map = {
                 {"b", "b", "b", "b", "b", "b", "b", "b", "b"},
@@ -27,13 +36,16 @@ public class LevelFactory {
 
         objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
         objectsToReturn[0] = new Player(3, 4, false);
-        pos = 1;
 
         fillArray(map, field.getCols(), field.getRows());
 
         return objectsToReturn;
 
     }
+
+    /**
+     * Level TWO factory
+     */
 
     public GameObject[] level2(Field field) {
         String[][] map = {
@@ -48,7 +60,6 @@ public class LevelFactory {
 
         objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
         objectsToReturn[0] = new Player(6, 4, false);
-        pos = 1;
 
         fillArray(map, field.getCols(), field.getRows());
 
@@ -56,6 +67,9 @@ public class LevelFactory {
 
     }
 
+    /**
+     * Level THREE factory
+     */
 
     public GameObject[] level3(Field field) {
         String[][] map = {
@@ -70,13 +84,16 @@ public class LevelFactory {
 
         objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
         objectsToReturn[0] = new Player(6, 5, false);
-        pos = 1;
 
         fillArray(map, field.getCols(), field.getRows());
 
         return objectsToReturn;
 
     }
+
+    /**
+     * Level FOUR factory
+     */
 
     public GameObject[] level4(Field field) {
         String[][] map = {
@@ -91,13 +108,16 @@ public class LevelFactory {
 
         objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
         objectsToReturn[0] = new Player(6, 4, false);
-        pos = 1;
 
         fillArray(map, field.getCols(), field.getRows());
 
         return objectsToReturn;
 
     }
+
+    /**
+     * Level FIVE factory
+     */
 
     public GameObject[] level5(Field field) {
         String[][] map = {
@@ -112,13 +132,16 @@ public class LevelFactory {
 
         objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
         objectsToReturn[0] = new Player(6, 4, false);
-        pos = 1;
 
         fillArray(map, field.getCols(), field.getRows());
 
         return objectsToReturn;
 
     }
+
+    /**
+     * Level SIX factory
+     */
 
     public GameObject[] level6(Field field) {
         String[][] map = {
@@ -133,13 +156,16 @@ public class LevelFactory {
 
         objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
         objectsToReturn[0] = new Player(6, 2, false);
-        pos = 1;
 
         fillArray(map, field.getCols(), field.getRows());
 
         return objectsToReturn;
 
     }
+
+    /**
+     * Level SEVEN factory
+     */
 
     public GameObject[] level7(Field field) {
         String[][] map = {
@@ -154,7 +180,6 @@ public class LevelFactory {
 
         objectsToReturn = new GameObject[numberOfObjects(map, field.getCols(), field.getRows())];
         objectsToReturn[0] = new Player(5, 2, false);
-        pos = 1;
 
         fillArray(map, field.getCols(), field.getRows());
 
@@ -162,9 +187,14 @@ public class LevelFactory {
 
     }
 
-
+    /**
+     * The array of Game Objects is populated based on the map
+     * For each position in the map an object is created based on the String imprinted on the map
+     */
 
     private void fillArray(String[][] map, int cols, int rows) {
+        pos = 1;
+
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 if (map[row][col].equals("b")) {
@@ -181,6 +211,11 @@ public class LevelFactory {
         }
     }
 
+    /**
+     * Counter of objects in the map
+     * The number is then returned as the length of the GameObjects array
+     */
+
     private int numberOfObjects(String[][] map, int cols, int rows) {
         int counter = 1;
 
@@ -193,6 +228,10 @@ public class LevelFactory {
         }
         return counter;
     }
+
+    /**
+     * When current level is completed the next one is loaded
+     */
 
     public GameObject[] getNextLevel(int level, Field field) {
         if (level == 1) {
@@ -211,6 +250,10 @@ public class LevelFactory {
             return null;
         }
     }
+
+    /**
+     * Resets current level
+     */
 
     public GameObject[] resetLevel(int level, Field field) {
         if (level == 1) {
