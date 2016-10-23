@@ -17,6 +17,7 @@ public class SimpleGfxField {
     private Picture startPicture;
     private Picture creditsPicture;
     private boolean gameStarted;
+    private boolean quit;
 
     /**
      * Background Color
@@ -48,10 +49,11 @@ public class SimpleGfxField {
 
     public static final int HEIGHT = 800;
 
-    public SimpleGfxField(int cols, int rows, boolean gameStarted) {
-        this.cols = cols;
-        this.rows = rows;
+    public SimpleGfxField(boolean gameStarted, boolean quit) {
+        this.cols = WIDTH / SIZE;
+        this.rows = HEIGHT / SIZE;
         this.gameStarted = gameStarted;
+        this.quit = quit;
         init();
     }
 
@@ -68,6 +70,9 @@ public class SimpleGfxField {
         rectangle.setColor(GROUND);
         if (!gameStarted) {
             startPicture = new Picture(PADDING, PADDING, "background/init.png");
+        }
+        if(quit){
+            startPicture = new Picture(PADDING, PADDING, "background/credits.png");
         }
         show();
     }
@@ -136,6 +141,10 @@ public class SimpleGfxField {
         if (!gameStarted) {
             startPicture.draw();
             gameStarted = true;
+        }
+        if (quit){
+            startPicture.draw();
+            quit = false;
         }
     }
 

@@ -60,6 +60,8 @@ public class Game {
 */
     private boolean gameStarted;
 
+    private boolean quit;
+
 
 /**
     * Initializes a new Game, constructing an abstract and graphic fields, and a new level (through LevelFactory)
@@ -73,7 +75,7 @@ public class Game {
         field = new Field(9, 8);
         objects = factory.level1(field);
         collisionDetector = new CollisionDetector(objects);
-        simpleGfxField = new SimpleGfxField(10, 10, false);
+        simpleGfxField = new SimpleGfxField(gameStarted, quit);
         spots = spotXIndex();
         boxes = boxIndex();
 
@@ -88,6 +90,7 @@ public class Game {
 
     public void startGame() {
         gameStarted = true;
+        //quit = true;
         simpleGfxField.deleteStartPicture();
         simpleGfxField.createPos(objects);
 
@@ -287,15 +290,17 @@ public class Game {
      */
 
     public void quit() {
+        quit = true;
         objects = factory.level1(field);
         collisionDetector = new CollisionDetector(objects);
-        simpleGfxField = new SimpleGfxField(10, 10, false);
+        simpleGfxField = new SimpleGfxField(gameStarted, quit);
 
         spots = spotXIndex();
         boxes = boxIndex();
-        level = 1; // TODO: 22/10/16 changeLevel??
+        level = 1;
 
         gameStarted = false;
+        quit = false;
     }
 
     /**
@@ -306,7 +311,7 @@ public class Game {
     public void reset() {
         objects = factory.resetLevel(level, field);
         collisionDetector = new CollisionDetector(objects);
-        simpleGfxField = new SimpleGfxField(10, 10, true);
+        simpleGfxField = new SimpleGfxField(gameStarted, quit);
         simpleGfxField.createPos(objects);
         spots = spotXIndex();
         boxes = boxIndex();
@@ -323,7 +328,7 @@ public class Game {
         if (level != 0) {
             objects = factory.getNextLevel(level, field);
             collisionDetector = new CollisionDetector(objects);
-            simpleGfxField = new SimpleGfxField(10, 10, true);
+            simpleGfxField = new SimpleGfxField(gameStarted, quit);
             simpleGfxField.createPos(objects);
             spots = spotXIndex();
             boxes = boxIndex();
