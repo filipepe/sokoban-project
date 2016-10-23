@@ -26,7 +26,7 @@ public class Player extends MovableObject {
     }
 
     /**
-     * Retrieves Player actual direction
+     * Retrieves actual Player direction
      */
 
     public Direction getDirection() {
@@ -34,7 +34,7 @@ public class Player extends MovableObject {
     }
 
     /**
-     * Retrieves Player actual picture
+     * Retrieves actual Player picture
      */
 
     public int getActualPicture() {

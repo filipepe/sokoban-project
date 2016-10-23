@@ -38,13 +38,13 @@ public class SimpleGfxField {
     public static final int SIZE = 100;
 
     /**
-     * Width Value
+     * Width Value in pixels
      */
 
     public static final int WIDTH = 900;
 
     /**
-     * Height Value
+     * Height Value in pixels
      */
 
     public static final int HEIGHT = 800;
@@ -149,7 +149,7 @@ public class SimpleGfxField {
     }
 
     /**
-     * Hides initial menu
+     * Hides initial menu or quit menu
      */
 
     public void deleteStartPicture() {

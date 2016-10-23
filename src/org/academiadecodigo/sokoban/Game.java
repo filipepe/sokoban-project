@@ -43,12 +43,16 @@ public class Game {
     Array of boxes
 */
     private int[] boxes;
+    /**
+     Player
+     */
+    private Player player;
 /**
-    Factor of Game Levels
+    Factory of Game Levels
 */
     private LevelFactory factory;
 /**
-    Game Level
+    Actual Game Level
 */
     private int level;
 /**
@@ -56,10 +60,12 @@ public class Game {
 */
     private boolean keyboardBlocked;
 /**
-    Checks if game has started
+    Tells if game has started
 */
     private boolean gameStarted;
-
+    /**
+     Tells if the game has been quited
+     */
     private boolean quit;
 
 
@@ -74,6 +80,7 @@ public class Game {
         factory = new LevelFactory();
         field = new Field(9, 8);
         objects = factory.level1(field);
+        player = (Player) objects[0];
         collisionDetector = new CollisionDetector(objects);
         simpleGfxField = new SimpleGfxField(gameStarted, quit);
         spots = spotXIndex();
@@ -90,7 +97,6 @@ public class Game {
 
     public void startGame() {
         gameStarted = true;
-        //quit = true;
         simpleGfxField.deleteStartPicture();
         simpleGfxField.createPos(objects);
 
@@ -132,19 +138,19 @@ public class Game {
     public void movePlayer(Direction direction) {
         if (!switchDirection(direction)) {
             int pos;
-            pos = isMovable(direction, objects[0]);
+            pos = isMovable(direction, player);
             if (pos == -1) {
-                objects[0].getPosition().moveInDirection(direction);
+                player.getPosition().moveInDirection(direction);
                 simpleGfxField.moveInDirection(0, direction);
-                ((Player) objects[0]).setActualPicture();
+                player.setActualPicture();
                 playerInSpot();
             } else if (objects[pos] instanceof Box) {
                 int pos2;
                 pos2 = isMovable(direction, objects[pos]);
                 if (pos2 == -1) {
-                    objects[0].getPosition().moveInDirection(direction);
+                    player.getPosition().moveInDirection(direction);
                     simpleGfxField.moveInDirection(0, direction);
-                    ((Player) objects[0]).setActualPicture();
+                    player.setActualPicture();
                     playerInSpot();
                     objects[pos].getPosition().moveInDirection(direction);
                     simpleGfxField.moveInDirection(pos, direction);
@@ -217,9 +223,9 @@ public class Game {
 
     private boolean switchDirection(Direction direction) {
 
-        if (((Player) objects[0]).getDirection() != direction) {
-            ((Player) objects[0]).setDirection(direction);
-            ((Player) objects[0]).setActualPicture(0);
+        if (player.getDirection() != direction) {
+            player.setDirection(direction);
+            player.setActualPicture(0);
             return true;
         }
         return false;
@@ -228,6 +234,7 @@ public class Game {
     /**
      * Checks if there are boxes and spotX with the same position
      * Changes picture of box if true
+     * And call the winner method in case of all boxes match the Spotx position
      * @see SimpleGfxField#changeBoxPicture(int, boolean)
      */
 
@@ -262,7 +269,7 @@ public class Game {
     private void winner() throws InterruptedException {
         keyboardBlocked = true;
 
-        ((Player) objects[0]).setActualPicture(0);
+        player.setActualPicture(0);
 
         long startTime = System.currentTimeMillis();
         Timer t = new Timer("next-level");
@@ -276,22 +283,23 @@ public class Game {
     private void playerInSpot() {
 
         for (int i : spots) {
-            if (objects[0].getPosition().comparePosition(objects[i].getPosition())) {
-                simpleGfxField.changePlayerPicture(((Player) objects[0]).getDirection(), ((Player) objects[0]).getActualPicture(), true);
+            if (player.getPosition().comparePosition(objects[i].getPosition())) {
+                simpleGfxField.changePlayerPicture(player.getDirection(), player.getActualPicture(), true);
                 return;
             } else {
-                simpleGfxField.changePlayerPicture(((Player) objects[0]).getDirection(), ((Player) objects[0]).getActualPicture(), false);
+                simpleGfxField.changePlayerPicture(player.getDirection(), player.getActualPicture(), false);
             }
         }
     }
 
     /**
-     * Returns to Initial Menu
+     * Returns to Credits Menu, allowing the player to restart from level  1
      */
 
     public void quit() {
         quit = true;
         objects = factory.level1(field);
+        player = (Player) objects[0];
         collisionDetector = new CollisionDetector(objects);
         simpleGfxField = new SimpleGfxField(gameStarted, quit);
 
@@ -310,6 +318,7 @@ public class Game {
 
     public void reset() {
         objects = factory.resetLevel(level, field);
+        player = (Player) objects[0];
         collisionDetector = new CollisionDetector(objects);
         simpleGfxField = new SimpleGfxField(gameStarted, quit);
         simpleGfxField.createPos(objects);
@@ -327,6 +336,7 @@ public class Game {
 
         if (level != 0) {
             objects = factory.getNextLevel(level, field);
+            player = (Player) objects[0];
             collisionDetector = new CollisionDetector(objects);
             simpleGfxField = new SimpleGfxField(gameStarted, quit);
             simpleGfxField.createPos(objects);
@@ -360,7 +370,7 @@ public class Game {
     private void startMusic() {
         AudioInputStream audioInputStream = null;
         try {
-            audioInputStream = AudioSystem.getAudioInputStream(new File("resources/musicas/cardigans.wav"));
+            audioInputStream = AudioSystem.getAudioInputStream(new File("resources/musics/cardigans.wav"));
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -393,8 +403,8 @@ public class Game {
 
         @Override
         public void run() {
-            simpleGfxField.winner(((Player) objects[0]).getActualPicture());
-            ((Player) objects[0]).setActualPicture();
+            simpleGfxField.winner(player.getActualPicture());
+            player.setActualPicture();
             count++;
 
             if (count > 12) {

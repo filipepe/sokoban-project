@@ -189,7 +189,7 @@ public class LevelFactory {
 
     /**
      * The array of Game Objects is populated based on the map
-     * For each position in the map an object is created based on the String imprinted on the map
+     * For each position in the map an object is created based on the String printed on the map
      */
 
     private void fillArray(String[][] map, int cols, int rows) {
@@ -214,6 +214,7 @@ public class LevelFactory {
     /**
      * Counter of objects in the map
      * The number is then returned as the length of the GameObjects array
+     * Initial counter as 1 to count the Player
      */
 
     private int numberOfObjects(String[][] map, int cols, int rows) {

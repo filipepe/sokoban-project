@@ -20,11 +20,11 @@ public class CollisionDetector {
 
     /**
      * Checks if objects collide
-     * If object is a Player and there is no object in the adjacent position, i.e. the next position in given direction,
+     * If the object is a Player and there is no object in the adjacent position, i.e. the next position in given direction,
      * then it's OK
      * If the object is a brick or a box, it returns its position in the array of game objects
      *
-     * If object is a Box and there is no object in the adjacent position, its alright baby
+     * If object is a Box and there is no object in the adjacent position, it's alright baby
      * Otherwise, it returns its position in the array of game objects
      * */
     
