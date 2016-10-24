@@ -69,10 +69,10 @@ public class SimpleGfxField {
         rectangle = new Rectangle(PADDING, PADDING, WIDTH, HEIGHT);
         rectangle.setColor(GROUND);
         if (!gameStarted) {
-            startPicture = new Picture(PADDING, PADDING, "background/init.png");
+            startPicture = new Picture(PADDING, PADDING, "resources/background/init.png");
         }
         if(quit){
-            startPicture = new Picture(PADDING, PADDING, "background/credits.png");
+            startPicture = new Picture(PADDING, PADDING, "resources/background/credits.png");
         }
         show();
     }
@@ -125,7 +125,7 @@ public class SimpleGfxField {
 
     public void credits(){
 
-        creditsPicture = new Picture(PADDING, PADDING, "background/credits.png");
+        creditsPicture = new Picture(PADDING, PADDING, "resources/background/credits.png");
 
         creditsPicture.draw();
     }

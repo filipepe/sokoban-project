@@ -74,12 +74,12 @@ public class SimpleGfxPosition {
     public void changeBoxPicture(int position, boolean onSpot) {
         Picture pic;
         if (onSpot) {
-            pic = new Picture(picture[position].getX(), picture[position].getY(), "Box/sprite_1.png");
+            pic = new Picture(picture[position].getX(), picture[position].getY(), "resources/Box/sprite_1.png");
             picture[position].delete();
             picture[position] = pic;
             picture[position].draw();
         } else {
-            pic = new Picture(picture[position].getX(), picture[position].getY(), "Box/sprite_0.png");
+            pic = new Picture(picture[position].getX(), picture[position].getY(), "resources/Box/sprite_0.png");
             picture[position].delete();
             picture[position] = pic;
             picture[position].draw();
@@ -97,19 +97,19 @@ public class SimpleGfxPosition {
 
         switch (direction) {
             case UP:
-                picture[0].load("ash_back/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_back/sprite_" + actualPicture + ".png");
                 break;
             case DOWN:
-                picture[0].load("ash_front/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_front/sprite_" + actualPicture + ".png");
                 break;
             case LEFT:
-                picture[0].load("ash_left/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_left/sprite_" + actualPicture + ".png");
                 break;
             case RIGHT:
-                picture[0].load("ash_right/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_right/sprite_" + actualPicture + ".png");
                 break;
             default:
-                picture[0].load("ash_back/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_back/sprite_" + actualPicture + ".png");
                 break;
         }
 
@@ -123,19 +123,19 @@ public class SimpleGfxPosition {
     public void changeWinnerPicture(int actualPicture) {
         switch (actualPicture) {
             case 0:
-                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_winner/sprite_" + actualPicture + ".png");
                 break;
             case 1:
-                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_winner/sprite_" + actualPicture + ".png");
                 break;
             case 2:
-                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_winner/sprite_" + actualPicture + ".png");
                 break;
             case 3:
-                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_winner/sprite_" + actualPicture + ".png");
                 break;
             default:
-                picture[0].load("ash_winner/sprite_" + actualPicture + ".png");
+                picture[0].load("resources/ash_winner/sprite_" + actualPicture + ".png");
                 break;
         }
     }

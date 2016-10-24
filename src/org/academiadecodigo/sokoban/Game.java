@@ -11,6 +11,7 @@ import org.academiadecodigo.sokoban.simpleGfx.SimpleGfxField;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -368,9 +369,19 @@ public class Game {
      */
 
     private void startMusic() {
+        String pathStr = "/resources/musics/cardigans.wav";
+        URL soundURL = Game.class.getResource(pathStr);
+
         AudioInputStream audioInputStream = null;
         try {
-            audioInputStream = AudioSystem.getAudioInputStream(new File("resources/musics/cardigans.wav"));
+            if (soundURL == null) {
+                // to load when running from intellij
+                pathStr = pathStr.substring(1);
+                File file = new File(pathStr);
+                soundURL = file.toURI().toURL();
+            }
+
+            audioInputStream = AudioSystem.getAudioInputStream(soundURL);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
